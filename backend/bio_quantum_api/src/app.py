@@ -162,11 +162,8 @@ if __name__ == '__main__':
     # Get port from environment variable (Render sets this)
     port = int(os.environ.get('PORT', 5000))
     
-   # TEMP: Force Werkzeug override for Render
-	import os
-	print("=== Executing main.py ===")
-	print(f"FILE: {os.path.abspath(__file__)}")
+    # Production-ready server configuration
+    # Safe fallback for both production and development
+	socketio.run(app, host='0.0.0.0', port=port, debug=False, 	allow_unsafe_werkzeug=True)
 
-	socketio.run(app, host='0.0.0.0', port=5000,
-             debug=False, allow_unsafe_werkzeug=True)
 
